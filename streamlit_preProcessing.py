@@ -23,13 +23,7 @@ for col in ['Sex', 'Embarked']:
     le = LabelEncoder()
     df[col] = le.fit_transform(df[col])
     label_encoders[col] = le
-
-# Định nghĩa đường dẫn tệp dữ liệu trước khi log với MLflow
-raw_data_path = "raw_titanic.csv"
-processed_data_path = "processed_titanic.csv"
-df.to_csv(raw_data_path, index=False)
-df.to_csv(processed_data_path, index=False)
-
+    
 # Minh họa bằng Streamlit
 if __name__ == "__main__":
     st.title("Tiền xử lý dữ liệu Titanic với MLflow")
