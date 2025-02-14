@@ -1,8 +1,6 @@
-
 import pandas as pd
 import os
 import streamlit as st
-
 
 # Đọc dữ liệu
 data_url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
@@ -23,10 +21,14 @@ for col in ['Sex', 'Embarked']:
     le = LabelEncoder()
     df[col] = le.fit_transform(df[col])
     label_encoders[col] = le
-    
+
+# Định nghĩa đường dẫn tệp dữ liệu trước khi log
+data_path = "processed_titanic.csv"
+df.to_csv(data_path, index=False)
+
 # Minh họa bằng Streamlit
 if __name__ == "__main__":
-    st.title("Tiền xử lý dữ liệu Titanic với MLflow")
+    st.title("Tiền xử lý dữ liệu Titanic")
     st.write("### Dữ liệu sau khi tiền xử lý")
     st.dataframe(df.head())
     st.write(f"### Kích thước dữ liệu: {df.shape}")
@@ -39,5 +41,4 @@ if __name__ == "__main__":
     st.write(df[['Sex', 'Embarked']].head())
     
     st.write("### Tệp dữ liệu")
-    st.write("- **Dữ liệu gốc:**", raw_data_path)
-    st.write("- **Dữ liệu đã xử lý:**", processed_data_path)
+    st.write("- **Dữ liệu đã xử lý:**", data_path)
